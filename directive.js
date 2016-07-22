@@ -34,8 +34,9 @@ function scrollWatcher($document) {
                 scope.$apply(function () {
                     //execute the provided callback
                     scope.scrollCallback({ $event: e, isEndEvent: false, isScrollingEvent: true });
-                    //We do this Incase angular removes dom parts causing the scroll bar to disappear.we need to trigger the end event again 
-                    dbnce();
+                    //We do this incase angular removes dom parts causing the scroll bar to disappear or change.
+                    //we need to trigger the end event again 
+                    dbnce(e);
                 });
             };
 
