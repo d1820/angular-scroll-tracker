@@ -25,7 +25,7 @@ function scrollWatcher($document) {
 
                 //register first scroll interceptor. Since scrolling has stopped we now need to register a start scrolling event binding
                 el.bind("scroll", firstScrollFunc);
-            }, 200, { "leading": true });
+            }, 200);
 
             const firstScrollFunc = function (e) {
                 //so we have detected the scrolling needs to start. Since this is a one time event between starts/stops we need to
@@ -34,6 +34,8 @@ function scrollWatcher($document) {
                 scope.$apply(function () {
                     //execute the provided callback
                     scope.scrollCallback({ $event: e, isEndEvent: false, isScrollingEvent: true });
+                    //We do this Incase angular removes dom parts causing the scroll bar to disappear.we need to trigger the end event again 
+                    dbnce();
                 });
             };
 
